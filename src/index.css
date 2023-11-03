@@ -4,14 +4,11 @@
   font-family: 'Space Grotesk', sans-serif;
 }
 
-html,body,#root,.main{
+html,body,#root{
   height: 100%;
+  width:100%;
   margin: 0;
   padding:0;
-}
-
-.main{
-  display: flex;
 }
 
 label,input{
@@ -22,9 +19,5 @@ input{
   width:98%;
   padding-top: 10px;
   padding-bottom:10px;
-  font-size: 16px;
-}
-
-input::placeholder{
   font-size: 16px;
 }
