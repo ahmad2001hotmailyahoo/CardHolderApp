@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import styled , {css} from "styled-components";
 import backgroudDesktop from "./assets/images/bg-main-desktop.png";
 import bgCardFront from "./assets/images/bg-card-front.png";
 import bgCardBack from "./assets/images/bg-card-back.png";
 function App() {
   const [showForm, setShowForm] = useState(true);
-  const [initialized,setInitialized] = useState(true);
-
   const [formDetails,setFormDetails] = useState(
     {
       "cardName":"",
@@ -17,7 +14,6 @@ function App() {
       "year":""
     }
   );
-
   const [error,setError] = useState(
     {
       "cardNameError":"",
@@ -29,41 +25,38 @@ function App() {
   );
 
     useEffect(()=>{
-      if(!initialized){
-        setError({
-          ...error,
-          "cardNameError":
-          formDetails.cardName == ''?"card name can't be empty":
-          !formDetails.cardName.match(/^[a-zA-Z]+$/i)?"card name can have only have letters":"",
-          "cardNumberError":  
-          formDetails.cardNumber == ''?"card number can't be empty":
-          !formDetails.cardNumber.match(/^[0-9 ]+$/i)?"card number can have only have numbers":"",
-          "monthError":
-          formDetails.month == ''?"month can't be empty":
-          ( formDetails.month == '0' || 
-            formDetails.month == '1' || 
-            formDetails.month == '2' ||
-            formDetails.month == '3' ||
-            formDetails.month == '4' ||
-            formDetails.month == '5' ||
-            formDetails.month == '6' ||
-            formDetails.month == '7' ||
-            formDetails.month == '8' ||
-            formDetails.month == '9' ||
-            formDetails.month == '10' ||
-            formDetails.month == '11' ||
-            formDetails.month == '12') ?"":"month must be valid integer between 1 and 12",
-            "yearError":
-            formDetails.year == ''?"year can't be empty":
-            !formDetails.year.match(/^[0-9]+$/i)?"year can't contain letters":
-            ( parseInt(formDetails.year) >= 1950 && parseInt(formDetails.year) <= 2050)?
-            "":"year must be between 1950 and 2050",
-            "cvcError":
-            formDetails.cvc == ''?"Cvc can't be empty":
-            !formDetails.cvc.match(/^[0-9]+$/i)?"Cvc must be integer":""     
-        })
-      }
-        setInitialized(false);
+      setError({
+        ...error,
+        "cardNameError":
+        formDetails.cardName == ''?"card name can't be empty":
+        !formDetails.cardName.match(/^[a-zA-Z]+$/i)?"card name can have only have letters":"",
+        "cardNumberError":  
+        formDetails.cardNumber == ''?"card number can't be empty":
+        !formDetails.cardNumber.match(/^[0-9 ]+$/i)?"card number can have only have numbers":"",
+        "monthError":
+        formDetails.month == ''?"month can't be empty":
+        ( formDetails.month == '0' || 
+          formDetails.month == '1' || 
+          formDetails.month == '2' ||
+          formDetails.month == '3' ||
+          formDetails.month == '4' ||
+          formDetails.month == '5' ||
+          formDetails.month == '6' ||
+          formDetails.month == '7' ||
+          formDetails.month == '8' ||
+          formDetails.month == '9' ||
+          formDetails.month == '10' ||
+          formDetails.month == '11' ||
+          formDetails.month == '12') ?"":"month must be valid integer between 1 and 12",
+          "yearError":
+          formDetails.year == ''?"year can't be empty":
+          !formDetails.year.match(/^[0-9]+$/i)?"year can't contain letters":
+          ( parseInt(formDetails.year) >= 1950 && parseInt(formDetails.year) <= 2050)?
+          "":"year must be between 1950 and 2050",
+          "cvcError":
+          formDetails.cvc == ''?"Cvc can't be empty":
+          !formDetails.cvc.match(/^[0-9]+$/i)?"Cvc must be integer":""     
+      })
     },[formDetails])
 
   
@@ -342,7 +335,7 @@ function App() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-      if(error.cardNameError == "" && error.cardNumberError == "" &&  error.cvcError == "" && error.monthError == "" && error.yearError  == ""){
+      if(error.cardNameError == "" && error.cardNumberError == "" &&  error.cvcError == "" && error.monthError == "" && error.yearError  == "" ){
         setShowForm(false) 
       }
   }
